@@ -4,23 +4,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/constants/app_colors.dart';
 
 import '../../bloc/news_bloc.dart';
 import '../../bloc/news_event.dart';
 import '../../bloc/news_states.dart';
-import '../news_detail_screen.dart';
 import 'widgets/headlines_widget.dart';
 import 'widgets/home_app_bar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 const spinkit2 = SpinKitFadingCircle(
-  color: Colors.amber,
+  color: AppColors.darktealColor,
   size: 50.0,
 );
 
@@ -40,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      appBar:
-          PreferredSize(preferredSize: Size(0, 59), child: HomeAppBarWidget()),
+      appBar: PreferredSize(
+          preferredSize: const Size(0, 59), child: HomeAppBarWidget()),
       body: ListView(
         children: [
           SizedBox(
@@ -52,10 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 print(state);
                 switch (state.status) {
                   case Status.initial:
-                    return Center(
+                    return const Center(
                       child: SpinKitCircle(
                         size: 50,
-                        color: Colors.blue,
+                        color: AppColors.blueColor,
                       ),
                     );
                   case Status.failure:
@@ -83,10 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (BuildContext context, state) {
                 switch (state.categoriesStatus) {
                   case Status.initial:
-                    return Center(
+                    return const Center(
                       child: SpinKitCircle(
                         size: 50,
-                        color: Colors.blue,
+                        color: AppColors.blueColor,
                       ),
                     );
                   case Status.failure:
@@ -113,23 +113,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: height * .18,
                                     width: width * .3,
                                     placeholder: (context, url) => Container(
-                                      child: Center(
+                                      child: const Center(
                                         child: SpinKitCircle(
                                           size: 50,
-                                          color: Colors.blue,
+                                          color: AppColors.blueColor,
                                         ),
                                       ),
                                     ),
-                                    errorWidget: (context, url, error) => Icon(
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
                                       Icons.error_outline,
-                                      color: Colors.red,
+                                      color: AppColors.redColor,
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Container(
                                     height: height * .18,
-                                    padding: EdgeInsets.only(left: 15),
+                                    padding: const EdgeInsets.only(left: 15),
                                     child: Column(
                                       children: [
                                         Text(
@@ -139,10 +140,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           maxLines: 3,
                                           style: GoogleFonts.poppins(
                                               fontSize: 15,
-                                              color: Colors.black54,
+                                              color: AppColors.blackColor,
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -157,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 14,
-                                                    color: Colors.black54,
+                                                    color: AppColors.blackColor,
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),
@@ -189,6 +190,6 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 const spinKit2 = SpinKitFadingCircle(
-  color: Colors.amber,
+  color: AppColors.darktealColor,
   size: 50,
 );

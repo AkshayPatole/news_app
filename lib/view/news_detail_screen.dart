@@ -1,12 +1,8 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-
-
-
+import 'package:news_app/constants/app_colors.dart';
 
 class NewsDetailScreen extends StatefulWidget {
   String newsImage;
@@ -19,13 +15,11 @@ class NewsDetailScreen extends StatefulWidget {
   NewsDetailScreen(this.newsImage, this.newsTitle, this.newsDate,
       this.newsAuthor, this.newsDesc, this.newsContent, this.newsSource);
 
-
   @override
   State<NewsDetailScreen> createState() => _NewsDetailScreenState();
 }
 
 class _NewsDetailScreenState extends State<NewsDetailScreen> {
-
   final format = new DateFormat('MMMM dd,yyyy');
 
   @override
@@ -79,7 +73,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             padding: EdgeInsets.only(top: 20, right: 20, left: 20),
             height: Kheight * 0.6,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30))),
@@ -88,7 +82,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 Text('${widget.newsTitle}',
                     style: GoogleFonts.poppins(
                         fontSize: 20,
-                        color: Colors.black87,
+                        color: AppColors.blackColor,
                         fontWeight: FontWeight.w700)),
                 SizedBox(height: Kheight * 0.02),
                 Row(
@@ -102,7 +96,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.poppins(
                               fontSize: 13,
-                              color: Colors.blueAccent,
+                              color: AppColors.blueColor,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -113,7 +107,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: Colors.black87,
+                          color: AppColors.blackColor,
                           fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -124,17 +118,11 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 Text('${widget.newsDesc}',
                     style: GoogleFonts.poppins(
                         fontSize: 15,
-                        color: Colors.black87,
+                        color: AppColors.blackColor,
                         fontWeight: FontWeight.w500)),
                 SizedBox(
                   height: Kheight * 0.03,
                 ),
-                // Text('${widget.newsContent}',
-                //     maxLines: 20,
-                //     style: GoogleFonts.poppins(
-                //         fontSize: 15,
-                //         color: Colors.black87,
-                //         fontWeight: FontWeight.w500)),
                 SizedBox(
                   height: Kheight * 0.03,
                 ),

@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return const Center(
                       child: SpinKitCircle(
                         size: 50,
-                        color: Colors.blue,
+                        color: AppColors.blueColor,
                       ),
                     );
                   case Status.failure:
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: const Center(
                                         child: SpinKitCircle(
                                           size: 50,
-                                          color: Colors.blue,
+                                          color: AppColors.blueColor,
                                         ),
                                       ),
                                     ),
@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 14,
-                                                    color: Colors.black54,
+                                                    color: AppColors.blackColor,
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),

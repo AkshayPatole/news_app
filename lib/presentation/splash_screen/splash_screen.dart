@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_app/constants/app_colors.dart';
 import 'package:news_app/presentation/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     });
   }
 
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/splash_pic.jpg',
+              'assets/images/splash_pic.jpg',
               fit: BoxFit.cover,
               height: height * .5,
             ),
@@ -45,13 +46,13 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               'TOP HEADLINES',
               style: GoogleFonts.anton(
-                  letterSpacing: .6, color: Colors.grey.shade700),
+                  letterSpacing: .6, color: AppColors.blackColor),
             ),
             SizedBox(
               height: height * 0.04,
             ),
-            SpinKitChasingDots(
-              color: Colors.blue,
+            const SpinKitChasingDots(
+              color: AppColors.blueColor,
               size: 40,
             )
           ],
