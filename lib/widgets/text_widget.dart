@@ -30,7 +30,7 @@ class TextWidget extends StatelessWidget {
       textAlign: textAlign,
       overflow: textOverflow,
       style: TextStyle(
-        fontFamily: "Baloo",
+        fontFamily: "Roboto",
         decoration: textDecoration,
         fontSize: fontSize ?? 12.sp,
         fontWeight: fontWeight,

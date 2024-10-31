@@ -5,9 +5,6 @@ import '../../presentation/splash_screen/splash_screen.dart';
 
 class AppRoutes {
   static const String splashscreen = "/splash-screen";
-  static const String loginscreen = "/login-screen";
-  static const String phonescreen = "/phone-screen";
-  static const String otpscreen = "/otp-screen";
   static const String homescreen = "/home-screen";
 
   GoRouter get router => _goRouter;
@@ -20,7 +17,7 @@ class AppRoutes {
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        path: loginscreen,
+        path: homescreen,
         builder: (context, state) => const HomeScreen(),
       ),
       // GoRoute(

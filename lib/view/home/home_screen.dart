@@ -1,20 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/constants/app_colors.dart';
 
 import '../../bloc/news_bloc.dart';
 import '../../bloc/news_event.dart';
 import '../../bloc/news_states.dart';
-import '../../view/home/widgets/headlines_widget.dart';
-import '../../view/home/widgets/home_app_bar_widget.dart';
+import '../news_detail_screen.dart';
+import 'widgets/headlines_widget.dart';
+import 'widgets/home_app_bar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -32,8 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<NewsBloc>().add(FetchNewsChannelHeadlines('bbc-news'));
-    context.read<NewsBloc>().add(NewsCategories('general'));
+    context.read<NewsBloc>()..add(FetchNewsChannelHeadlines('bbc-news'));
+    context.read<NewsBloc>()..add(NewsCategories('general'));
   }
 
   @override
@@ -41,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     final height = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size(0, 59), child: HomeAppBarWidget()),
+      appBar:
+          PreferredSize(preferredSize: Size(0, 59), child: HomeAppBarWidget()),
       body: ListView(
         children: [
           SizedBox(
@@ -50,12 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
             width: width,
             child: BlocBuilder<NewsBloc, NewsState>(
               builder: (BuildContext context, state) {
-                if (kDebugMode) {
-                  print(state);
-                }
+                print(state);
                 switch (state.status) {
                   case Status.initial:
-                    return const Center(
+                    return Center(
                       child: SpinKitCircle(
                         size: 50,
                         color: Colors.blue,
@@ -86,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (BuildContext context, state) {
                 switch (state.categoriesStatus) {
                   case Status.initial:
-                    return const Center(
+                    return Center(
                       child: SpinKitCircle(
                         size: 50,
                         color: Colors.blue,
@@ -115,26 +112,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fit: BoxFit.cover,
                                     height: height * .18,
                                     width: width * .3,
-                                    // ignore: avoid_unnecessary_containers
                                     placeholder: (context, url) => Container(
-                                      child: const Center(
+                                      child: Center(
                                         child: SpinKitCircle(
                                           size: 50,
                                           color: Colors.blue,
                                         ),
                                       ),
                                     ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(
+                                    errorWidget: (context, url, error) => Icon(
                                       Icons.error_outline,
-                                      color: AppColors.redColor,
+                                      color: Colors.red,
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Container(
                                     height: height * .18,
-                                    padding: const EdgeInsets.only(left: 15),
+                                    padding: EdgeInsets.only(left: 15),
                                     child: Column(
                                       children: [
                                         Text(
@@ -143,12 +138,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .toString(),
                                           maxLines: 3,
                                           style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            color: AppColors.blackColor,
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                                              fontSize: 15,
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.w700),
                                         ),
-                                        const Spacer(),
+                                        Spacer(),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,

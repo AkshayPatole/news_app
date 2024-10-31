@@ -1,66 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'utils/routes/app_routes.dart';
-import 'package:reactive_theme/reactive_theme.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:http/http.dart' as http;
 
-import 'package:intl/intl_browser.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-  
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  usePathUrlStrategy();
-  final thememode = await ReactiveMode.getSavedThemeMode();
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-  runApp(MyApp(
-    saveThemeMode: thememode,
-  ));
+import 'bloc/news_bloc.dart';
+import 'presentation/splash_screen/splash_screen.dart';
+
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key, this.saveThemeMode});
-  final ThemeMode? saveThemeMode;
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final appRoutes = AppRoutes();
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      minTextAdapt: true,
-      splitScreenMode: true,
-      designSize: const Size(360, 740),
-      child: ReactiveThemer(
-        builder: (reactiveMode) {
-          return MaterialApp.router(
-            routeInformationParser: appRoutes.router.routeInformationParser,
-            routeInformationProvider: appRoutes.router.routeInformationProvider,
-            routerDelegate: appRoutes.router.routerDelegate,
-            themeMode: reactiveMode,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                brightness: Brightness.light,
-                seedColor: Colors.deepPurple,
-              ),
-              useMaterial3: true,
-            ),
-            darkTheme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                brightness: Brightness.dark,
-                seedColor: Colors.deepPurple,
-              ),
-              useMaterial3: true,
-            ),
-          );
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NewsBloc>(
+          create: (BuildContext context) => NewsBloc(),
+        ),
+      ],
+      child: ScreenUtilInit(
+        splitScreenMode: true,
+        minTextAdapt: true,
+        // designSize:
+        child: MaterialApp(
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const SplashScreen(),
+        ),
       ),
     );
   }
 }
+
+const spinkit = SpinKitChasingDots(
+  color: Colors.blue,
+  size: 40.0,
+);

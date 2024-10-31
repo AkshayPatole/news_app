@@ -18,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     });
   }
 
@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: height * 0.04,
             ),
-            SpinKitChasingDots(
+            const SpinKitChasingDots(
               color: Colors.blue,
               size: 40,
             )

@@ -1,17 +1,37 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:news_app/models/news_channel_headlines_model.dart';
+
+import '../models/categories_new_model.dart';
+import '../models/news_channel_headlines_model.dart';
 
 class NewsRepository {
-  Future<NewsChannelsHeadlinesModel> fetchNewsChannelHeadlinesApi() async {
-    String url =
-        "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=c3e7c3255a7e4962b39dfdbbaddbf69e";
-    final response = await http.get(Uri.parse(url));
+  Future<CategoriesNewsModel> fetchNewsCategoires(String category) async {
+    String newsUrl =
+        'https://newsapi.org/v2/everything?q=$category&apiKey=c3e7c3255a7e4962b39dfdbbaddbf69e';
+    final response = await http.get(Uri.parse(newsUrl));
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+
+      return CategoriesNewsModel.fromJson(body);
+    } else {
+      throw Exception('Error');
+    }
+  }
+
+  Future<NewsChannelsHeadlinesModel> fetchNewsChannelHeadlinesApi(
+      String newsChannel) async {
+    String newsUrl =
+        'https://newsapi.org/v2/top-headlines?sources=${newsChannel}&apiKey=c3e7c3255a7e4962b39dfdbbaddbf69e';
+    print(newsUrl);
+    final response = await http.get(Uri.parse(newsUrl));
+    print(response.statusCode.toString());
+    print(response);
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
       return NewsChannelsHeadlinesModel.fromJson(body);
+    } else {
+      throw Exception('Error');
     }
-    throw Exception("error");
   }
 }
